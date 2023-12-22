@@ -21,6 +21,9 @@ public class GridController : MonoBehaviour
     void Start() {
         grid = gameObject.GetComponent<Grid>();
         hf = GameObject.FindGameObjectWithTag("Scripts").GetComponent<HexFunctions>();
+        foreach (var pos in BoardMap.cellBounds.allPositionsWithin) {
+            BoardMap.SetTileFlags(pos, TileFlags.None);
+        }
     }
 
     // Update is called once per frame
@@ -31,12 +34,14 @@ public class GridController : MonoBehaviour
 
         // Left mouse click
         if (Input.GetMouseButtonUp(0)) {
-            selectTile();
+            // highlight green on click
+            highlightTile(GetGridMousePosition(), Color.green);
+            BoardMap.AddTileFlags(GetGridMousePosition(), TileFlags.LockColor);
         }
 
         // Right mouse click
         if (Input.GetMouseButtonUp(1)) {
-            // Debug.Log(GetGridMousePosition());
+            unhighlightAllTiles();
         }
     }
 
@@ -52,17 +57,14 @@ public class GridController : MonoBehaviour
     // Hover highlighting
     void hoverHighlight() {
         Vector3Int mousePos = GetGridMousePosition();
-        float distFromCentre = hf.offsetDistance(mousePos, new Vector3Int(0, 0, 0));
-        if (!mousePos.Equals(previousMousePos) & distFromCentre < 4){
-
+        if (!mousePos.Equals(previousMousePos)){
+            
             // Revert old tile
-            BoardMap.SetTileFlags(previousMousePos, TileFlags.None);
-            BoardMap.SetColor(previousMousePos, previousColor);
+            highlightTile(previousMousePos, previousColor);
+            previousColor = Color.white;
 
             // Recolour new tile
-            // previousColor = BoardMap.GetColor(mousePos);
-            BoardMap.SetTileFlags(mousePos, TileFlags.None);
-            BoardMap.SetColor(mousePos, Color.red);
+            highlightTile(mousePos, Color.red);
 
             previousMousePos = mousePos;
         }
@@ -73,8 +75,8 @@ public class GridController : MonoBehaviour
     void getDistBetweenTiles() {
         Vector3Int mousePos = GetGridMousePosition();
 
-        BoardMap.SetTileFlags(mousePos, TileFlags.None);
-        BoardMap.SetColor(mousePos, Color.green);
+        highlightTile(mousePos, Color.green);
+
         // If there is no tile selected
         if (!pos1.HasValue) {
             pos1 = new Nullable<Vector3Int>(mousePos);
@@ -84,17 +86,23 @@ public class GridController : MonoBehaviour
         else {
             float dist = hf.offsetDistance(pos1.Value, mousePos);
             Debug.Log(dist);
-            BoardMap.SetTileFlags(pos1.Value, TileFlags.None);
-            BoardMap.SetColor(pos1.Value, Color.white);
+            highlightTile(pos1.Value, Color.white);
             pos1 = null;
         }
     }
 
 
-    void selectTile() {
-        Vector3Int mousePos = GetGridMousePosition();
+    // Function to be called when selecting a tile
+    void highlightTile(Vector3Int pos, Color color) {
+        BoardMap.SetColor(pos, color);
+    }
 
-        BoardMap.SetTileFlags(mousePos, TileFlags.None);
-        BoardMap.SetColor(mousePos, Color.green);
+
+    // Removes all highlighting from tiles and resets color flags
+    void unhighlightAllTiles() {
+        foreach (var pos in BoardMap.cellBounds.allPositionsWithin) {
+            BoardMap.RemoveTileFlags(pos, TileFlags.LockColor);
+            highlightTile(pos, Color.white);
+        }
     }
 }
