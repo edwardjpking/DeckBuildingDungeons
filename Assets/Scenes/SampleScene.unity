@@ -702,11 +702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb80a5d343fed4aca93c03e21858beda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OverlayMap: {fileID: 1571129859}
   BoardMap: {fileID: 114279429}
-  hoverTileRed: {fileID: 11400000, guid: 4cf1543ca6d934fdeba9610b48cce610, type: 2}
-  hoverTileGreen: {fileID: 11400000, guid: 95c3bfc616fc04566b3e1e44990d1a0b, type: 2}
-  baseTile: {fileID: 11400000, guid: b6fbe95be53284dcda7e12cf633c4eec, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -896,7 +892,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04d09f05d2a84c4e9a01ef755390d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grid: {fileID: 0}
+  player: {fileID: 1395887046}
+  grid: {fileID: 300663759}
 --- !u!1 &1483686957
 GameObject:
   m_ObjectHideFlags: 0

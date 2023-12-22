@@ -12,8 +12,6 @@ public class GridController : MonoBehaviour
     public Nullable<Vector3Int> pos1 = null;
     [SerializeField] private Tilemap BoardMap = null;
 
-
-
     private Vector3Int previousMousePos = new Vector3Int();
     private Color previousColor = Color.white;
 
@@ -34,20 +32,18 @@ public class GridController : MonoBehaviour
 
         // Left mouse click
         if (Input.GetMouseButtonUp(0)) {
-            // highlight green on click
-            highlightTile(GetGridMousePosition(), Color.green);
-            BoardMap.AddTileFlags(GetGridMousePosition(), TileFlags.LockColor);
+
         }
 
         // Right mouse click
         if (Input.GetMouseButtonUp(1)) {
-            unhighlightAllTiles();
+
         }
     }
 
 
     // Get the mouse position in offset grid coordinates
-    Vector3Int GetGridMousePosition() {
+    public Vector3Int GetGridMousePosition() {
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int mouseGridPos = grid.WorldToCell(mouseWorldPos);
         return new Vector3Int(mouseGridPos[0], mouseGridPos[1], 0);
@@ -55,7 +51,7 @@ public class GridController : MonoBehaviour
 
 
     // Hover highlighting
-    void hoverHighlight() {
+    private void hoverHighlight() {
         Vector3Int mousePos = GetGridMousePosition();
         if (!mousePos.Equals(previousMousePos)){
             
@@ -72,7 +68,7 @@ public class GridController : MonoBehaviour
 
 
     // Gets distance between two hexes that are selected individually
-    void getDistBetweenTiles() {
+    private void getDistBetweenTiles() {
         Vector3Int mousePos = GetGridMousePosition();
 
         highlightTile(mousePos, Color.green);
@@ -93,16 +89,24 @@ public class GridController : MonoBehaviour
 
 
     // Function to be called when selecting a tile
-    void highlightTile(Vector3Int pos, Color color) {
+    public void highlightTile(Vector3Int pos, Color color) {
         BoardMap.SetColor(pos, color);
     }
 
 
     // Removes all highlighting from tiles and resets color flags
-    void unhighlightAllTiles() {
+    public void unhighlightAllTiles() {
         foreach (var pos in BoardMap.cellBounds.allPositionsWithin) {
             BoardMap.RemoveTileFlags(pos, TileFlags.LockColor);
             highlightTile(pos, Color.white);
         }
+    }
+
+
+    // Highlight and lock a tile
+    public void selectTile() {
+        Vector3Int mousePos = GetGridMousePosition();
+        highlightTile(mousePos, Color.green);
+        BoardMap.AddTileFlags(mousePos, TileFlags.LockColor);
     }
 }
