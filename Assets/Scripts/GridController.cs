@@ -7,11 +7,14 @@ using System;
 
 public class GridController : MonoBehaviour
 {
+
     private Grid grid;
     private HexFunctions hf;
     public Nullable<Vector3Int> pos1 = null;
     [SerializeField] private Tilemap BoardMap = null;
 
+    const bool LOCKED = true;
+    int boardSize = 4;
     private Vector3Int previousMousePos = new Vector3Int();
     private Color previousColor = Color.white;
 
@@ -37,10 +40,9 @@ public class GridController : MonoBehaviour
 
         // Right mouse click
         if (Input.GetMouseButtonUp(1)) {
-
+            unhighlightAllTiles();
         }
     }
-
 
     // Get the mouse position in offset grid coordinates
     public Vector3Int GetGridMousePosition() {
@@ -48,7 +50,6 @@ public class GridController : MonoBehaviour
         Vector3Int mouseGridPos = grid.WorldToCell(mouseWorldPos);
         return new Vector3Int(mouseGridPos[0], mouseGridPos[1], 0);
     }
-
 
     // Hover highlighting
     private void hoverHighlight() {
@@ -66,12 +67,11 @@ public class GridController : MonoBehaviour
         }
     }
 
-
     // Gets distance between two hexes that are selected individually
     private void getDistBetweenTiles() {
         Vector3Int mousePos = GetGridMousePosition();
 
-        highlightTile(mousePos, Color.green);
+        highlightTile(mousePos, Color.green, true);
 
         // If there is no tile selected
         if (!pos1.HasValue) {
@@ -87,12 +87,13 @@ public class GridController : MonoBehaviour
         }
     }
 
-
     // Function to be called when selecting a tile
-    public void highlightTile(Vector3Int pos, Color color) {
+    public void highlightTile(Vector3Int pos, Color color, bool lockColor = false) {
         BoardMap.SetColor(pos, color);
+        if (lockColor) {
+            BoardMap.AddTileFlags(pos, TileFlags.LockColor);
+        }
     }
-
 
     // Removes all highlighting from tiles and resets color flags
     public void unhighlightAllTiles() {
@@ -102,11 +103,9 @@ public class GridController : MonoBehaviour
         }
     }
 
-
     // Highlight and lock a tile
     public void selectTile() {
         Vector3Int mousePos = GetGridMousePosition();
-        highlightTile(mousePos, Color.green);
-        BoardMap.AddTileFlags(mousePos, TileFlags.LockColor);
+        highlightTile(mousePos, Color.green, LOCKED);
     }
 }

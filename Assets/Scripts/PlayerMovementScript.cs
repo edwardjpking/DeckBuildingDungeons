@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovementScript : MonoBehaviour
 {
 
+    private Constants cnst;
     private HexFunctions hf;
     private GridController gc;
     [SerializeField] private GameObject player;
@@ -13,8 +14,9 @@ public class PlayerMovementScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hf = GameObject.FindGameObjectWithTag("Scripts").GetComponent<HexFunctions>();   
-        gc = GameObject.Find("Grid").GetComponent<GridController>();   
+        cnst = GameObject.FindGameObjectWithTag("Scripts").GetComponent<Constants>();
+        hf = GameObject.FindGameObjectWithTag("Scripts").GetComponent<HexFunctions>();
+        gc = GameObject.Find("Grid").GetComponent<GridController>();
     }
 
     // Update is called once per frame
@@ -28,6 +30,9 @@ public class PlayerMovementScript : MonoBehaviour
 
     void moveToMouse() {
         Vector3Int mousePos = gc.GetGridMousePosition();
-        player.transform.position = grid.CellToWorld(mousePos);
+        float dist = hf.offsetDistance(mousePos, cnst.origin);
+        if (dist < cnst.outOfBounds) {
+            player.transform.position = grid.CellToWorld(mousePos);
+        }
     }
 }
