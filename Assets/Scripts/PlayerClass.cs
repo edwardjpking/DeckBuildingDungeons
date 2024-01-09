@@ -6,49 +6,36 @@ public class PlayerClass : MonoBehaviour
 {
     public class Player
     {
+
         // Define variables
-        public int Hitpoints
-        { get; set; }
-        public int BaseActions
-        { get; set; }
-        public int RemainingActions
-        { get; set; }
-        public int TeamNumber
-        { get; set; }
-        public bool Fire
-        { get; set; }
-        public bool Ice
-        { get; set; }
-        public bool Lightning
-        { get; set; }
-        public bool Water
-        { get; set; }
-        public bool Poison
-        { get; set; }
-        public bool Invisible
-        { get; set; }
-        public int Burn
-        { get; set; }
-        public int PoisonValue
-        { get; set; }
+        private int Hitpoints { get; set; }
+        private int BaseActions { get; set; }
+        private int RemainingActions { get; set; }
+        private int DefaultMovement { get; set; }
+        private int TeamNumber { get; set; }
+        private int Burn { get; set; }
+        private int Freeze { get; set; }
+        private int Shock { get; set; }
+        private int Soak { get; set; }
+        private int Poison { get; set; }
+        private bool Invisible { get; set; }
+        private bool IsHuman { get; set; }
 
-
-        // Instantiate variables
-        public Player(int HP, int BA, int RA, int TN)
+        public Player(List<int> intAtts, List<bool> boolAtts)
         {
-            Hitpoints = HP;
-            BaseActions = BA;
-            RemainingActions = RA;
-            TeamNumber = TN;
-            Fire = false;
-            Ice = false;
-            Lightning = false;
-            Water = false;
-            Poison = false;
-            Invisible = false;
+            Hitpoints = intAtts[0];
+            BaseActions = intAtts[1];
+            RemainingActions = 0;
+            DefaultMovement = intAtts[2];
+            TeamNumber = intAtts[3];
             Burn = 0;
-            PoisonValue = 0;
+            Freeze = 0;
+            Shock = 0;
+            Soak = 0;
+            Poison = 0;
+            Invisible = false;
+            IsHuman = boolAtts[0];
         }
-
     }
+
 }

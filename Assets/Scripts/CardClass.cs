@@ -1,127 +1,151 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
-// using PlayerClass;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+[System.Serializable]
 
-// public class CardClass : MonoBehaviour
-// {
-//     public class Card
-//     {
-//         public int pointValue { get; set; }
-//         public list<Player> Targets
+public class Card
+{
+    public int id;
+    public string cardName;
+    public int pointValue;
+    public string cardDescription;
 
-//         // Move
-//         public void Move (x, HexDirections)
-//         {
 
-//         }
+    public Card() {
 
-//         // Attack
-//         public void Attack (x, Targets)
-//         {
-//             foreach (target in Targets)
-//             {
-//                 target.Hitpoints -= x;
-//             }
-//         }
+    }
 
-//         // Draw a card
-//         public void Draw (x)
-//         {
-//             for (int i = 0; i < x + 1; i ++)
-//             {
-//                 Deck.Draw();
-//             }
-//         }
+    public Card(int Id, string CardName, int PointValue, string CardDescription) {
+        id = Id;
+        cardName = CardName;
+        pointValue = PointValue;
+        cardDescription = CardDescription;
+    }
 
-//         // Discard a card
-//         public void Discard (x)
-//         {
-//             for (int i = 0; i < x + 1; i ++)
-//             {
-//                 Hand.Discard();
-//             }
-//         }
+    /*
 
-//         // Burn
-//         public void Burn (x, Targets)
-//         {
-//             foreach (target in Targets)
-//             {
-//                 target.Burn += x;
-//                 target.Fire = true;
-//             }
-//         }
+    private PlayerClass pc;
+    public List<pc.Player> Targets;
 
-//         // Freeze
-//         public void Freeze (Targets)
-//         {
-//             foreach (target in Targets)
-//             {
-//                 target.Ice = true;
-//             }
-//         }
 
-//         // Shock
-//         public void Shock (Targets)
-//         {
-//             foreach (target in Targets)
-//             {
-//                 target.Hitpoints -= 2;
-//                 target.Lightning = true;
-//             }
-//         }
 
-//         // Soak
-//         public void Soak (Targets)
-//         {
-//             foreach (target in Targets)
-//             {
-//                 target.Water = true;
-//             }
-//         }
 
-//         // Invisible
-//         public void Invisible (Targets)
-//         {
-//             foreach (target in Targets)
-//             {
-//                 target.Invisible = true;
-//             }
-//         }
 
-//         // Poison
-//         public void Poison (x, Targets)
-//         {
-//             foreach (target in Targets)
-//             {
-//                 Targets.Poison = true;
-//                 target.PoisonValue += x;
-//             }
-//         }
+    // Move
+    public void Move (int range, List<Player.PlayerClass.Player> Targets)
+    {
+        foreach (Player.PlayerClass.Player target in Targets)
+        {
 
-//         // Heal
-//         public void Heal (x, Targets)
-//         {
-//             foreach (target in Targets)
-//             {
-//                 target.Hitpoints += x;
-//             }
-//         }
+        }
+    }
 
-//         // Summon - unfinished
-//         public void Summon (summon)
-//         {
+    
+    // Attack
+    public void Attack (int x, List<Player.PlayerClass.Player> Targets)
+    {
+        foreach (Player.PlayerClass.Player target in Targets)
+        {
+            target.Hitpoints -= x;
+        }
+    }
 
-//         }
+    
+    // Draw a card
+    public void Draw (int x)
+    {
+        for (int i = 0; i < x + 1; i ++)
+        {
+            Deck.Draw();
+        }
+    }
 
-//         // Steamroll
-//         public void Steamroll (x, Targets)
-//         {
-//             foreach (target in Targets)
-//             {
-//                 target.RemainingActions += x;
-//             }
-//         }
-//     }
-// }
+    // Discard a card
+    public void Discard (int x)
+    {
+        for (int i = 0; i < x + 1; i ++)
+        {
+            Hand.Discard();
+        }
+    }
+
+    // Burn
+    public void Burn (int x, List<Player.PlayerClass.Player> Targets)
+    {
+        foreach (Player.PlayerClass.Player target in Targets)
+        {
+            target.Burn += x;
+        }
+    }
+
+    // Freeze
+    public void Freeze (int x, List<Player.PlayerClass.Player> Targets)
+    {
+        foreach (Player.PlayerClass.Player target in Targets)
+        {
+            target.Freeze += x;
+        }
+    }
+
+    // Shock
+    public void Shock (int x, List<Player.PlayerClass.Player> Targets)
+    {
+        foreach (Player.PlayerClass.Player target in Targets)
+        {
+            target.Hitpoints -= 2*x;
+            target.Shock += x;
+        }
+    }
+
+    // Soak
+    public void Soak (int x, List<Player.PlayerClass.Player> Targets)
+    {
+        foreach (Player.PlayerClass.Player target in Targets)
+        {
+            target.Soak += x;
+        }
+    }
+
+    // Invisible
+    public void Invisible (List<Player.PlayerClass.Player> Targets)
+    {
+        foreach (Player.PlayerClass.Player target in Targets)
+        {
+            target.Invisible = true;
+        }
+    }
+
+    // Poison
+    public void Poison (int x, List<Player.PlayerClass.Player> Targets)
+    {
+        foreach (Player.PlayerClass.Player target in Targets)
+        {
+            target.Poison += x;
+        }
+    }
+
+    // Heal
+    public void Heal (int x, List<Player.PlayerClass.Player> Targets)
+    {
+        foreach (Player.PlayerClass.Player target in Targets)
+        {
+            target.Hitpoints += x;
+        }
+    }
+
+    // Summon - unfinished
+    public void Summon (summon)
+    {
+
+    }
+    
+    // Take another action
+    public void TakeAnotherAction (int x, List<Player.PlayerClass.Player> Targets)
+    {
+        foreach (Player.PlayerClass.Player target in Targets)
+        {
+            target.RemainingActions += x;
+        }
+    }
+    */
+}

@@ -8,7 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>DeckBuildingDungeon</RootNamespace>
     <ProjectGuid>{4D43CCF5-7C3E-B7BB-2A3A-265E3351B2E2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -59,10 +59,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets/Scripts/GridController.cs" />
+    <Compile Include="Assets/Scripts/Constants.cs" />
+    <Compile Include="Assets/Scripts/CardDatabase.cs" />
     <Compile Include="Assets/Scripts/CardClass.cs" />
     <Compile Include="Assets/Scripts/HexFunctions.cs" />
     <Compile Include="Assets/Scripts/PlayerClass.cs" />
     <Compile Include="Assets/Scripts/PlayerMovementScript.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF SSD.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Surface.shader" />
+    <None Include="Assets/TextMesh Pro/Sprites/EmojiOne Attribution.txt" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets/TextMesh Pro/Resources/LineBreaking Leading Characters.txt" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" />
+    <None Include="Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF Overlay.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader" />
+    <None Include="Assets/TextMesh Pro/Shaders/TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -688,6 +713,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Unity.Sysroot.Linux_x86_64.csproj">
+      <Project>{61E79E46-BC95-096A-8AE6-B3F06B79E820}</Project>
+      <Name>Unity.Sysroot.Linux_x86_64</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.2D.IK.Runtime.csproj">
       <Project>{989088CC-501D-F892-99B7-BCB9CC597FF6}</Project>
       <Name>Unity.2D.IK.Runtime</Name>
@@ -695,6 +724,10 @@
     <ProjectReference Include="PsdPlugin.csproj">
       <Project>{3C4D3777-1932-0B8A-44B0-23B885A02872}</Project>
       <Name>PsdPlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Toolchain.Linux-x86_64.csproj">
+      <Project>{611A0309-3793-45C6-0D0B-61DBA9C35D66}</Project>
+      <Name>Unity.Toolchain.Linux-x86_64</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Burst.Editor.csproj">
       <Project>{B1301636-764D-1C5B-E0D1-335707AB1676}</Project>
@@ -799,6 +832,10 @@
     <ProjectReference Include="Unity.VisualScripting.SettingsProvider.Editor.csproj">
       <Project>{322AC669-088B-364E-58EF-9B9B59620E67}</Project>
       <Name>Unity.VisualScripting.SettingsProvider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.SysrootPackage.Editor.csproj">
+      <Project>{AF290CD9-03EB-75A7-463D-16951995BF66}</Project>
+      <Name>Unity.SysrootPackage.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Collections.csproj">
       <Project>{B2BC9848-D843-C13E-4ECB-F29B761A7D84}</Project>
